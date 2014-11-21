@@ -1,0 +1,10 @@
+file_roots:
+  base:
+    - /srv/salt/formulas/users-formula
+    - /srv/salt/states/
+    - /srv/salt/files/
+
+pillar_roots:
+  base:
+    - /srv/salt/pillar
+
