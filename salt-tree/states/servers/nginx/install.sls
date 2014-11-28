@@ -15,3 +15,14 @@ nginx_ppa_repo:
       - pkg: nginx_install
     - watch_in:
       - pkg: nginx_install
+
+nginx_sv:
+  file.managed:
+    - name: /etc/service/nginx/run
+    - source: salt://servers/nginx/files/nginx-runit.sh
+    - user: www-data
+    - group: www-data
+    - makedirs: True
+    - mode: 744
+    - require:
+      - pkg: nginx_install
