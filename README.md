@@ -1,7 +1,7 @@
 salt-web-stack
 ==============
 
-My salt repo for building VMs for PHP development
+My salt repo for building VMs for PHP development.  These salt states will add Ondrej Sury's PHP 5.6 PPA and installs php-fpm, as well as tools like phpunit and composer (into /usr/local/bin/).  Nginx is installed, but with only the default vhost file.
 
 
 Vagrant to provision the salt master
@@ -52,3 +52,39 @@ salt-ssh '*devvm*' state.highstate
 
 That should get you nginx and php-fpm running under runit supervision.  Notice that the hostname is pattern matched
 in this example.  I like to prefix the OS type in my hostnames with one letter (r = redhat, u = ubuntu, w = windows). 
+
+
+Convert to Docker Image
+===========
+If you have brought up another docker container to provision you can convert that container to an image for sharing
+with your dev team.  To convert your new container to a docker image you only need 1 step, but could benefit from 2.
+```
+docker commit xxxxx  dev-image-nginx-php56:1 # where xxxxx is the container ID
+```
+
+The second command involves exposing ports and volumes for your image.  Simply create a Dockerfile which pulls from
+our newly created image and exposes any ports or volumes you want.
+
+```
+FROM dev-image-nginx-php56:1
+
+VOLUME /app
+VOLUME /etc/nginx/sites-enabled
+EXPOSE 80
+EXPOSE 443
+EXPOSE 3000
+EXPOSE 3306
+EXPOSE 3309
+EXPOSE 8080
+```
+
+Now build that Docker file into a new image.
+
+```
+docker build -t dev-image-nginx-php56:latest .
+```
+Notice how we keep the version number at 1 for building the 'crude' docker image?  This is because (I don't think) 
+you can use any letters like alpha or beta (other than 'latest') when giving a version to your docker image.
+
+Now, whenever we upgrade the image, the 'crude' image provisioned with salt can always remain version 1, and the 
+'polished' image that was made with docker can be any version you want.
