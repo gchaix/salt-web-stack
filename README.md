@@ -16,7 +16,10 @@ The Vagrantfile will automatically install Salt Stack for a master installation.
 Provision developer image
 ===================
 Bring up any other VM, docker or anything else (ubuntu flavored, tested only with 14.04).  
-Add this second VM's IP to /etc/salt/roster like so
+
+Install or create an SSH private key on the new VM.  If you are using docker and phusion/baseimage you have access
+to the already installed private key with the file insecure_key included in this repo.  Copy that file to your
+first VM (the salt master one) and put it in /etc/salt/salt-ssh.rsa  (or /etc/salt/my-vms-root-private-key)
 
 ```
 udevvm01:
@@ -25,12 +28,20 @@ udevvm01:
    priv: /etc/salt/my-vms-root-private-key
 ```
 
+
 Now SSH to that machine by IP (/etc/salt/roster != /etc/hosts) and accept the fingerprint.  Then install python 2.7
 
 ```
 ssh -i /etc/salt/salt-rsa.ssh 172.17.0.X
 apt-get update
 apt-get install python2.7
+```
+
+MAKE SURE YOUR SSH KEY HAS PROPER PERMISSIONS
+---
+```
+   chmod go-rwx /etc/salt/salt-rsa.ssh
+   chown root:root /etc/salt/salt-rsa.ssh
 ```
 
 Salt-SSH
