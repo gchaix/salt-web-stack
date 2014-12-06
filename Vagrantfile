@@ -24,10 +24,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     d.create_args = ['--name', 'saltwebmaster',  '-t', '-p','4505', '-p', '4506', '-h', 'saltwebmaster', '--cap-add=SYS_PTRACE']
     d.cmd = ['/sbin/my_init', '--enable-insecure-key']
     d.has_ssh = true;
+
+    # only phusion/baseimage has this insecure_key already installed
+    config.ssh.private_key_path = "./insecure_key"
+    config.ssh.username = "root"
   end
- 
-  config.ssh.private_key_path = "./insecure_key"
-  config.ssh.username = "root"
 
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
@@ -42,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  config.vm.box_check_update = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -61,11 +62,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
   # config.ssh.forward_agent = true
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
 end
