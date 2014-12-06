@@ -1,6 +1,9 @@
 base:
-  'u*vm':
+  'u*':
     - pkgs/common-ubuntu-pkg
+
+  '*vm':
+    - users/vmuser
 
   '*devweb*':
     - vm/nginx
