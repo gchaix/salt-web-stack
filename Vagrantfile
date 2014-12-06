@@ -31,12 +31,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## Use all the defaults:
   config.vm.provision :salt do |salt|
-	salt.no_minion = true
-	salt.master_config = "etc/salt_master"
-	salt.install_master = true
+    salt.no_minion = true
+    salt.master_config = "etc/salt_master"
+    salt.install_master = true
     salt.verbose = true
     salt.install_type = "git"
-	salt.install_args = "v2014.7.0"
+    salt.install_args = "v2014.7.0"
     #salt.bootstrap_options = "git v2014.7.0rc6 "
   end
   # Disable automatic box update checking. If you disable this, then
