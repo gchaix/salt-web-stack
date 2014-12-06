@@ -11,13 +11,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder "salt-tree/", "/srv/salt/"
 
-   config.vm.provider "docker" do |d|
-     # Don't boot with headless mode
-     d.remains_running = true;
-     d.image = 'phusion/baseimage:0.9.15'
-     d.create_args = ['--name', 'saltwebmaster',  '-t', '-p','4505', '-p', '4506', '-h', 'saltwebmaster', '--cap-add=SYS_PTRACE']
-	 d.cmd = ['/sbin/my_init', '--enable-insecure-key']
-     d.has_ssh = true;
+  config.vm.provider "virtualbox" do |v|
+    v.name = "saltmaster"
+    v.gui  = true
+    config.vm.box = "ubuntu/trusty64"
+  end
+
+  config.vm.provider "docker" do |d|
+    # Don't boot with headless mode
+    d.remains_running = true;
+    d.image = 'phusion/baseimage:0.9.15'
+    d.create_args = ['--name', 'saltwebmaster',  '-t', '-p','4505', '-p', '4506', '-h', 'saltwebmaster', '--cap-add=SYS_PTRACE']
+    d.cmd = ['/sbin/my_init', '--enable-insecure-key']
+    d.has_ssh = true;
   end
  
   config.ssh.private_key_path = "./insecure_key"
