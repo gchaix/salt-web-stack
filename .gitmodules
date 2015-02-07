@@ -1,3 +1,6 @@
 [submodule "salt-tree/formulas/users-formula"]
 	path = salt-tree/formulas/users-formula
 	url = https://github.com/saltstack-formulas/users-formula.git
+[submodule "salt-tree/formulas/mysql-formula"]
+	path = salt-tree/formulas/mysql-formula
+	url = https://github.com/saltstack-formulas/mysql-formula.git
