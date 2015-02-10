@@ -4,3 +4,6 @@
 [submodule "salt-tree/formulas/mysql-formula"]
 	path = salt-tree/formulas/mysql-formula
 	url = https://github.com/saltstack-formulas/mysql-formula.git
+[submodule "salt-tree/formulas/dovecot-formula"]
+	path = salt-tree/formulas/dovecot-formula
+	url = https://github.com/saltstack-formulas/dovecot-formula.git
