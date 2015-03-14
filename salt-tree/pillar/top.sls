@@ -1,10 +1,7 @@
 base:
-  'u*':
+  '*':
     - pkgs/common-ubuntu-pkg
-
-  '*vm':
+  '*web*':
     - users/vmuser
-
-  '*devweb*':
     - vm/nginx
     - pkgs/php-for-vm

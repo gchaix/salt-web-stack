@@ -1,7 +1,7 @@
 base:
-   'u*':
+   '*':
        - common-pkg
-   'udevwebvm':
+   'saltweb':
        - servers.nginx.install
        - servers.phpfpm.install
        - dev-tools.php
