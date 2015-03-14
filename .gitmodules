@@ -7,3 +7,6 @@
 [submodule "salt-tree/formulas/dovecot-formula"]
 	path = salt-tree/formulas/dovecot-formula
 	url = https://github.com/saltstack-formulas/dovecot-formula.git
+[submodule "salt-tree/formulas/postfix-formula"]
+	path = salt-tree/formulas/postfix-formula
+	url = https://github.com/saltstack-formulas/postfix-formula.git
