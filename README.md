@@ -22,7 +22,7 @@ to the already installed private key with the file insecure_key included in this
 first VM (the salt master one) and put it in /etc/salt/salt-ssh.rsa  (or /etc/salt/my-vms-root-private-key)
 
 ```
-udevvm01:
+saltweb:
    host: xxx.xxx.xxx.xxx
    user: root
    priv: /etc/salt/my-vms-root-private-key
@@ -51,8 +51,8 @@ other VM and run any state files.  This is useful for developing your state file
 from another salt setup.
 
 ```
-salt-ssh udevvm01 test.ping
-salt-ssh udevvm01 state.sls servers.phpfpm.install  ;#runs the servers/phpfpm/install.sls file
+salt-ssh saltweb test.ping
+salt-ssh saltweb state.sls servers.phpfpm.install  ;#runs the servers/phpfpm/install.sls file
 ```
 
 You can install everything in the states/top.sls file by running the high state.
