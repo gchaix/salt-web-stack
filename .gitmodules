@@ -10,3 +10,6 @@
 [submodule "salt-tree/formulas/postfix-formula"]
 	path = salt-tree/formulas/postfix-formula
 	url = https://github.com/saltstack-formulas/postfix-formula.git
+[submodule "salt-tree/formulas/fail2ban-formula"]
+	path = salt-tree/formulas/fail2ban-formula
+	url = https://github.com/saltstack-formulas/fail2ban-formula.git
