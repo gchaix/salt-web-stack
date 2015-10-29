@@ -9,4 +9,5 @@ base:
        - match: grain
        - servers.nginx.install
        - servers.phpfpm.install
+   'role:php':
        - dev-tools.php
