@@ -5,6 +5,8 @@ base:
    'standard_users:True':
        - match: grain
        - users
+   'G@role:database':
+       - mysql.server
    'role:webserver':
        - match: grain
        - servers.nginx.install
