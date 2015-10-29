@@ -3,8 +3,10 @@ base:
     - pkgs/common-ubuntu-pkg
     - fail2ban/config
   'runit:True':
+    - match: grain
     - runit/package
   'is_virtual:True':
+    - match: grain
     - users/vmuser
   'role:database':
     - match: grain
