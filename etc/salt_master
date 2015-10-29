@@ -1,10 +1,17 @@
 file_roots:
   base:
     - /srv/salt/formulas/users-formula
+    - /srv/salt/formulas/dovecot-formula
+    - /srv/salt/formulas/fail2ban-formula
+    - /srv/salt/formulas/mysql-formula
+    - /srv/salt/formulas/postfix-formula
     - /srv/salt/states/
+    - /srv/salt/my-states/
     - /srv/salt/files/
 
 pillar_roots:
   base:
     - /srv/salt/pillar
+    - /srv/salt/my-pillar
 
+roster_file: /etc/salt/local/roster
