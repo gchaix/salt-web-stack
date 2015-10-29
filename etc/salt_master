@@ -19,3 +19,8 @@ ext_pillar:
       root_dir: /srv/salt/my-pillars/
       follow_dir_links: False
       raw_data: False
+
+#needed for https://github.com/saltstack/salt/issues/21370
+extra_filerefs:
+  - salt://mysql/defaults.yaml
+  - salt://mysql/supported_sections.yaml
