@@ -1,2 +1,3 @@
 .vagrant
 etc/local/roster
+salt-tree/my-pillar/hosts/*

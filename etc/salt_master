@@ -15,3 +15,9 @@ pillar_roots:
     - /srv/salt/my-pillar
 
 roster_file: /etc/salt/local/roster
+
+ext_pillar:
+  - file_tree:
+      root_dir: /srv/salt/my-pillars/
+      follow_dir_links: False
+      raw_data: False
