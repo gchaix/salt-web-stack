@@ -18,18 +18,10 @@ Provision developer image
 Bring up any other VM, docker or anything else (ubuntu flavored, tested only with 14.04).  
 
 Install or create an SSH private key on the new VM.  If you are using docker and phusion/baseimage you have access
-to the already installed private key with the file insecure_key included in this repo.  Copy that file to your
+to the already installed private key with the file insecure\_key included in this repo.  Copy that file to your
 first VM (the salt master one) and put it in /etc/salt/salt-ssh.rsa  (or /etc/salt/my-vms-root-private-key)
 
-```
-saltweb:
-   host: xxx.xxx.xxx.xxx
-   user: root
-   priv: /etc/salt/my-vms-root-private-key
-```
-
-
-Now SSH to that machine by IP (/etc/salt/roster != /etc/hosts) and accept the fingerprint.  Then install python 2.7
+Now SSH to that machine by IP and accept the fingerprint.  Then install python 2.7
 
 ```
 ssh -i /etc/salt/salt-rsa.ssh 172.17.0.X
@@ -44,7 +36,7 @@ MAKE SURE YOUR SSH KEY HAS PROPER PERMISSIONS
    chown root:root /etc/salt/salt-rsa.ssh
 ```
 
-Salt-SSH
+Salt-SSH (no minion mode)
 ===========
 You don't need the salt master running or a salt minion deamon on your other machine.  Salt-SSH can connect to your
 other VM and run any state files.  This is useful for developing your state files, which can be used in production
@@ -55,7 +47,48 @@ salt-ssh saltweb test.ping
 salt-ssh saltweb state.sls servers.phpfpm.install  ;#runs the servers/phpfpm/install.sls file
 ```
 
-You can install everything in the states/top.sls file by running the high state.
+
+Salt-SSH roster file
+===========
+In order to use salt without installing minions, you need to define a roster file.  This file is not part of this
+repo so that you don't lose your settings whenver you upgrade.
+
+It is recommended to create a local branch and save your roster file in that branch.  Use /etc/salt/local/roster
+
+```
+git checkout -b my-local-settings
+vi etc/local/roster
+
+#paste in something like this
+mywebhost:
+   host: xxx.xxx.xxx.xxx
+   user: root
+   priv: /etc/salt/local/my-host-root-private-key
+   grains:
+     roles:
+	   - webserver
+	   - php
+	   - mail
+	 standard_users: True
+```
+
+Test it with 
+```
+salt-ssh -i 'mywebhost' test.ping
+salt-ssh 'mywebhost' grains.items
+```
+
+You should see the roles and the key standard\_users in the output of the second command (grains.items)
+
+
+Installing stuff on the servers.
+==========
+In salt, installing software is the result of ensuring a state.  Which states go to which machines are
+defined in the states top file ( /srv/salt/states/top.sls ).
+
+By default, the top file installs standard states on nodes with standard roles.
+
+To run all the states (install all the software), run:
 
 ```
 salt-ssh '*devvm*' state.highstate
