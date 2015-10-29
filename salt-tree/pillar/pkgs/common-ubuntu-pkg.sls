@@ -3,6 +3,5 @@ common-pkg:
   - python-software-properties 
   - git-core
   - vim
-  - runit
   - tmux
   - htop
