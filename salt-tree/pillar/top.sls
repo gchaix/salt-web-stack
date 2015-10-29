@@ -1,14 +1,16 @@
 base:
   '*':
     - pkgs/common-ubuntu-pkg
-	- fail2ban/config
+    - fail2ban/config
+  'runit:True':
+    - runit/package
   'is_virtual:True':
     - users/vmuser
   'role:database':
-    - match: grains
+    - match: grain
     - mysql/defaults
   'role:webserver':
-    - match: grains
+    - match: grain
     - vm/nginx
   'role:php':
     - pkgs/php-for-vm

@@ -66,10 +66,10 @@ mywebhost:
    priv: /etc/salt/local/my-host-root-private-key
    grains:
      roles:
-	   - webserver
-	   - php
-	   - mail
-	 standard_users: True
+       - webserver
+       - php
+       - mail
+     standard_users: True
 ```
 
 Test it with 
