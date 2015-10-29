@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   config.vm.synced_folder "salt-tree/", "/srv/salt/"
+  config.vm.synced_folder "etc/", "/etc/salt/"
 
   config.ssh.private_key_path = "./insecure_key"
   config.ssh.username = "root"
@@ -42,9 +43,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.master_config = "etc/salt_master"
       salt.install_master = true
       salt.verbose = true
+	  salt.bootstrap_options = "-P -n"
       salt.install_type = "git"
-      salt.install_args = "v2015.2.0rc1"
-      salt.run_overstate = true
+      salt.install_args = "v2015.8.1"
+      salt.run_overstate = false
     end
   end
 
