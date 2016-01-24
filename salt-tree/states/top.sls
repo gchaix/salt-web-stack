@@ -6,7 +6,8 @@ base:
        - match: grain
        - users
    'G@role:database':
-       - mysql.server
+       - mariadb.server
+       - mariadb.client
    'role:webserver':
        - match: grain
        - servers.nginx.install
