@@ -13,3 +13,6 @@
 [submodule "salt-tree/formulas/fail2ban-formula"]
 	path = salt-tree/formulas/fail2ban-formula
 	url = https://github.com/saltstack-formulas/fail2ban-formula.git
+[submodule "salt-tree/formulas/mariadb-formula"]
+	path = salt-tree/formulas/mariadb-formula
+	url = https://github.com/markkimsal/saltstack-mariadb-formula
