@@ -1,4 +1,4 @@
-php-packages:
+common-pkg:
   php5-memcache:
   php5-fpm:
   php5-curl:
