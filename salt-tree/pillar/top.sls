@@ -11,8 +11,13 @@ base:
   'role:database':
     - match: grain
     - mysql/defaults
+  'role:mail':
+    - match: grain
+    - postfix/config
   'role:webserver':
     - match: grain
     - vm/nginx
   'role:php':
+    - match: grain
     - pkgs/php-for-vm
+
