@@ -17,6 +17,7 @@ base:
        - postfix
        - dovecot
        - postfix.config
+       - procmail.install
    'role:php':
        - dev-tools.php
        - dev-tools.php.cron
