@@ -19,3 +19,4 @@ base:
        - postfix.config
    'role:php':
        - dev-tools.php
+       - dev-tools.php.cron
