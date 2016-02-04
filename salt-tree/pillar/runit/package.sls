@@ -1,2 +1,2 @@
 common-pkg:
-  - runit
+  runit:
