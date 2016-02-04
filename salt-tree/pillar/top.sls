@@ -2,7 +2,7 @@ base:
   '*':
     - pkgs/common-ubuntu-pkg
     - fail2ban/config
-  'runit:True':
+  'supervisor:runit':
     - match: grain
     - runit/package
   'is_virtual:True':
