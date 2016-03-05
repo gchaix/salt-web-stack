@@ -1,8 +1,10 @@
 install_composer:
   cmd.script:
+    - cwd: /tmp
     - creates: /usr/local/bin/composer
-    - source: https://getcomposer.org/installer 
-    - name: "php --install-dir=/usr/local/bin --filename=composer"
+    - source: salt://dev-tools/php/files/composer-install.sh
+#    - name: "php --install-dir=/usr/local/bin --filename=composer"
+#    - shell: "/usr/bin/php"
 
 install_phpunit:
   file.managed:
