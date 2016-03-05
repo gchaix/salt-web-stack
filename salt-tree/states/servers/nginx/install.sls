@@ -26,3 +26,14 @@ nginx_sv:
     - mode: 744
     - require:
       - pkg: nginx_install
+
+nginx_stop_unsupervised_service:
+  service.dead:
+    - name: nginx
+    - require_in: nginx_run
+
+nginx_run:
+  service.running:
+    - name: nginx
+    - enable: True
+    - provider: runit
