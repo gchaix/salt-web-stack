@@ -17,6 +17,7 @@ base:
   'role:webserver':
     - match: grain
     - vm/nginx
+    - vm/logrotate
   'role:php':
     - match: grain
     - pkgs/php-for-vm
